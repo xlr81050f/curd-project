@@ -1,0 +1,53 @@
+<!-- templates/cart/detail.html -->
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Your Shopping Cart</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Book</th>
+                <th>Quantity</th>
+                <th>Remove</th>
+                <th>Unit Price</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart %}
+                <tr>
+                    <td>{{ item.book.title }}</td>
+                    <td>
+                        <form action="{% url 'cart:cart_add' item.book.id %}" method="post">
+                            {% csrf_token %}
+                            {{ item.update_quantity_form.quantity }}
+                            {{ item.update_quantity_form.override }}
+                            <input type="submit" value="Update">
+                        </form>
+                    </td>
+                    <td>
+                        <form action="{% url 'cart:cart_remove' item.book.id %}" method="post">
+                            {% csrf_token %}
+                            <input type="submit" value="Remove">
+                        </form>
+                    </td>
+                    <td>${{ item.price }}</td>
+                    <td>${{ item.total_price }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5">Your cart is empty</td>
+                </tr>
+            {% endfor %}
+            {% if cart.get_total_price %}
+                <tr>
+                    <td colspan="4">Total</td>
+                    <td>${{ cart.get_total_price }}</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+    <p>
+        <a href="{% url 'books:book_list' %}">Continue shopping</a>
+    </p>
+{% endblock %}

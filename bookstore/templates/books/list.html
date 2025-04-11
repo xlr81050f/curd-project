@@ -1,0 +1,20 @@
+<!-- templates/books/list.html -->
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Books</h1>
+    <div>
+        {% for book in books %}
+            <div>
+                <h2><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></h2>
+                <p>Author: {{ book.author }}</p>
+                <p>Price: ${{ book.price }}</p>
+                <form action="{% url 'cart:cart_add' book.id %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="quantity" value="1">
+                    <input type="submit" value="Add to cart">
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

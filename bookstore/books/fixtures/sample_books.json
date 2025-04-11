@@ -1,0 +1,73 @@
+[
+    {
+        "model": "books.publication",
+        "pk": 1,
+        "fields": {
+            "name": "Penguin Random House"
+        }
+    },
+    {
+        "model": "books.publication",
+        "pk": 2,
+        "fields": {
+            "name": "HarperCollins"
+        }
+    },
+    {
+        "model": "books.publication",
+        "pk": 3,
+        "fields": {
+            "name": "Simon & Schuster"
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 1,
+        "fields": {
+            "title": "The Great Gatsby",
+            "author": "F. Scott Fitzgerald",
+            "price": "12.99",
+            "publications": [1]
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 2,
+        "fields": {
+            "title": "To Kill a Mockingbird",
+            "author": "Harper Lee",
+            "price": "10.50",
+            "publications": [2]
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 3,
+        "fields": {
+            "title": "1984",
+            "author": "George Orwell",
+            "price": "9.99",
+            "publications": [3]
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 4,
+        "fields": {
+            "title": "Pride and Prejudice",
+            "author": "Jane Austen",
+            "price": "8.75",
+            "publications": [1, 2]
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 5,
+        "fields": {
+            "title": "The Hobbit",
+            "author": "J.R.R. Tolkien",
+            "price": "14.25",
+            "publications": [3]
+        }
+    }
+]
